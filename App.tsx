@@ -4,6 +4,7 @@ import {Container, Text, Button, Body, Card, CardItem, Header, Title, Content} f
 
 export default function App() {
   const [userAns, setUserAns] = useState<number>(0);
+
   const options = ['りんご', 'みかん', 'ぶどう', 'レモン'];
   const correctAns = 1;
   return (
@@ -13,6 +14,7 @@ export default function App() {
           WordHoliC
         </Title>
       </Header>
+
       <Content style={styles.container}>
         <Text style={[styles.common, styles.word]}>
           apple
@@ -20,36 +22,26 @@ export default function App() {
         <Text style={[styles.common, styles.phonetic]}>
           [ǽpl]
         </Text>
-
         {options.map((option, idx) => {
           const optionNum = idx + 1;
-          if (optionNum === correctAns) {
-            return (
-              <Button
-                block dark
-                bordered={!userAns}
-                success={!!userAns}
-                style={[styles.common]}
-                onPress={() => {setUserAns(optionNum)}}
-                key={idx}
-              >
-                <Text>{option}</Text>
-              </Button>
-            );
-          } else {
-            return (
-              <Button
-                block dark
-                bordered={!(!!userAns && userAns === optionNum)}
-                danger={!!userAns && userAns === optionNum}
-                style={[styles.common]}
-                onPress={() => {setUserAns(optionNum)}}
-                key={idx}
-              >
-                <Text>{option}</Text>
-              </Button>
-            );
-          }
+          const correctOption = optionNum === correctAns;
+          const isAnswered = !!userAns;
+          return (
+            <Button
+              block dark
+              bordered={
+                !(correctOption && isAnswered) &&
+                !(!correctOption && userAns === optionNum)
+              }
+              success={correctOption && isAnswered}
+              danger={!correctOption && isAnswered && userAns === optionNum}
+              style={[styles.common]}
+              onPress={() => {setUserAns(optionNum)}}
+              key={idx}
+            >
+              <Text>{option}</Text>
+            </Button>
+          );
         })}
         {!!userAns &&
         <Card style={[styles.common]}>

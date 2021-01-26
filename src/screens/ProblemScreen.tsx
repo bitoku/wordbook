@@ -3,6 +3,7 @@ import {Animated, Dimensions, StyleSheet, View} from 'react-native';
 import {Container, Text, Button, Body, Card, CardItem, Header, Title, Content} from 'native-base';
 import {StackNavigationProp} from "@react-navigation/stack";
 import {RootStackParamList} from "../Props";
+import {styles} from "../style/style";
 
 type ProblemScreenNavigationProp = StackNavigationProp<
   RootStackParamList,
@@ -205,31 +206,3 @@ export default function ProblemScreen(props: Props) {
     </Container>
   );
 }
-
-const styles = StyleSheet.create({
-  content: {
-    backgroundColor: '#fff',
-    display: 'flex',
-    flexDirection: 'row',
-    flex: 1,
-    justifyContent: 'center',
-  },
-  common: {
-    margin: 5,
-    fontFamily: 'Hiragino Mincho ProN',
-  },
-  word: {
-    textAlign: 'center',
-    fontWeight: 'bold',
-    fontSize: 32,
-  },
-  phonetic: {
-    marginTop: 0,
-    textAlign: 'center',
-    fontWeight: 'bold',
-    fontSize: 16,
-  },
-  header: {
-    height: 30,
-  }
-});

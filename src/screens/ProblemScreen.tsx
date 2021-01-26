@@ -5,6 +5,7 @@ import {StackNavigationProp} from "@react-navigation/stack";
 import {RootStackParamList} from "../Props";
 import {styles} from "../style/style";
 import {Question} from "../components/Question";
+import {Vocabulary} from "../Vocabulary";
 
 type ProblemScreenNavigationProp = StackNavigationProp<
   RootStackParamList,
@@ -20,6 +21,24 @@ export default function ProblemScreen(props: Props) {
     navigation,
   } = props;
   const slideAnim = useRef(new Animated.Value(0)).current;
+
+  const vocab: Vocabulary = {
+    word: 'apple',
+    pronunciation: 'ǽpl',
+    syllable: 'ap･ple',
+    pos: 'noun',
+    inflection: '複～s | -z |',
+    meanings: ['りんご'],
+    text: `1 Cリンゴ; リンゴの木(apple tree) (!果肉ではU)
+  ▸ bake [bite into] an apple
+  リンゴを焼く[かじる]
+  ▸ An apple a day keeps the doctor away.
+  〘ことわざ〙 1日にリンゴ1つで医者いらず (!リンゴは健康に良いとされる) .
+  2 Cリンゴに似た果実; リンゴに形が似たもの
+  ▸ a crab apple
+  野生リンゴ.
+  3 〖A-〗アップル〘米国のIT企業〙; ＝ Macintosh.`
+  }
 
   const slide = () => {
     Animated.timing(slideAnim, {
@@ -43,7 +62,7 @@ export default function ProblemScreen(props: Props) {
             }]
         }}
         >
-          <Question />
+          <Question vocab={vocab}/>
         </Animated.View>
         <Animated.View style={{
           width: Dimensions.get('window').width,
@@ -56,7 +75,7 @@ export default function ProblemScreen(props: Props) {
             }]
         }}
         >
-          <Question />
+          <Question vocab={vocab}/>
         </Animated.View>
       </View>
       <View style={{flex: 1}}>

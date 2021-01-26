@@ -1,6 +1,6 @@
 import {Animated, Dimensions, View} from "react-native";
 import {Question} from "./Question";
-import React, {useEffect, useRef} from "react";
+import React, {useEffect, useRef, useState} from "react";
 import {Vocabulary} from "../Vocabulary";
 import {styles} from "../style/style";
 import {useUpdateEffect} from "../hooks/useUpdateEffect";
@@ -16,14 +16,26 @@ export const AnimatedQuestion = (props: AnimatedQuestionProps) => {
     questionIdx,
   } = props;
   const slideAnim = useRef(new Animated.Value(0)).current;
+  const [vocab1, setVocab1] = useState<Vocabulary | undefined>(undefined);
+  const [vocab2, setVocab2] = useState<Vocabulary | undefined>(undefined);
 
   useUpdateEffect(() => {
+    console.log(slideAnim);
     Animated.timing(slideAnim, {
       toValue: 1,
       duration: 200,
       useNativeDriver: false,
-    }).start();
+    }).start(() => {
+      setVocab1(vocabs[questionIdx]);
+      slideAnim.setValue(0);
+      setVocab2(vocabs[questionIdx+1]);
+    });
   }, [questionIdx]);
+
+  useEffect(() => {
+    setVocab1(vocabs[questionIdx]);
+    setVocab2(vocabs[questionIdx+1]);
+    }, []);
 
   const defaultVocab: Vocabulary = {
     word: 'end',
@@ -34,6 +46,9 @@ export const AnimatedQuestion = (props: AnimatedQuestionProps) => {
     meanings: ['end'],
     text: `end`
   };
+
+  // const vocab1 = vocabs[questionIdx] || defaultVocab;
+  // const vocab2 = vocabs[questionIdx+1] || defaultVocab;
 
   return (
     <View style={styles.content}>
@@ -48,7 +63,9 @@ export const AnimatedQuestion = (props: AnimatedQuestionProps) => {
           }]
       }}
       >
-        <Question vocab={vocabs[questionIdx] || defaultVocab}/>
+        {vocab1 &&
+        <Question vocab={vocab1}/>
+        }
       </Animated.View>
       <Animated.View style={{
         width: Dimensions.get('window').width,
@@ -61,7 +78,9 @@ export const AnimatedQuestion = (props: AnimatedQuestionProps) => {
           }]
       }}
       >
-        <Question vocab={vocabs[questionIdx] || defaultVocab}/>
+        {vocab2 &&
+        <Question vocab={vocab2}/>
+        }
       </Animated.View>
     </View>
   );

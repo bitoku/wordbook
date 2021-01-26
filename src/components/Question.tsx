@@ -1,7 +1,7 @@
 import {Body, Button, Card, CardItem, Text} from "native-base";
 import {styles} from "../style/style";
 import {Animated, View} from "react-native";
-import React, {useState} from "react";
+import React, {useEffect, useState} from "react";
 import {Vocabulary} from "../Vocabulary";
 
 export type QuestionProps = {
@@ -11,6 +11,10 @@ export type QuestionProps = {
 export const Question = (props: QuestionProps) => {
   const {vocab} = props;
   const [userAns, setUserAns] = useState<number>(0);
+
+  useEffect(() => {
+    setUserAns(0);
+  }, [vocab]);
 
   const options = [vocab.meanings[0], 'みかん', 'ぶどう', 'レモン'];
   const correctAns = 1;

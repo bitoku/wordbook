@@ -9,5 +9,5 @@ export const useUpdateEffect = (effect: EffectCallback, deps: DependencyList) =>
     } else {
       firstRender.current = false;
     }
-  })
+  }, deps)
 }

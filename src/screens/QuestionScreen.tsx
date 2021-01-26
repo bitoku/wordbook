@@ -15,7 +15,7 @@ type Props = {
   navigation: ProblemScreenNavigationProp;
 };
 
-export default function ProblemScreen(props: Props) {
+export default function QuestionScreen(props: Props) {
   const [questionIdx, setQuestionIdx] = useState(0);
 
   const vocabs: Vocabulary[] = [

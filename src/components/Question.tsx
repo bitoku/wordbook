@@ -16,7 +16,7 @@ export const Question = (props: QuestionProps) => {
     setUserAns(0);
   }, [vocab]);
 
-  const options = [vocab.meanings[0], 'みかん', 'ぶどう', 'レモン'];
+  const options = [vocab.meanings[0], 'みかん', 'ぶどう', 'いちご'];
   const correctAns = 1;
 
   return (

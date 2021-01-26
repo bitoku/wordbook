@@ -8,22 +8,23 @@ import {useUpdateEffect} from "../hooks/useUpdateEffect";
 export type AnimatedQuestionProps = {
   vocabs: Vocabulary[],
   questionIdx: number,
+  width: number,
 }
 
 export const AnimatedQuestion = (props: AnimatedQuestionProps) => {
   const {
     vocabs,
     questionIdx,
+    width,
   } = props;
   const slideAnim = useRef(new Animated.Value(0)).current;
   const [vocab1, setVocab1] = useState<Vocabulary | undefined>(undefined);
   const [vocab2, setVocab2] = useState<Vocabulary | undefined>(undefined);
 
   useUpdateEffect(() => {
-    console.log(slideAnim);
     Animated.timing(slideAnim, {
       toValue: 1,
-      duration: 200,
+      duration: 300,
       useNativeDriver: false,
     }).start(() => {
       setVocab1(vocabs[questionIdx]);
@@ -47,18 +48,15 @@ export const AnimatedQuestion = (props: AnimatedQuestionProps) => {
     text: `end`
   };
 
-  // const vocab1 = vocabs[questionIdx] || defaultVocab;
-  // const vocab2 = vocabs[questionIdx+1] || defaultVocab;
-
   return (
     <View style={styles.content}>
       <Animated.View style={{
-        width: Dimensions.get('window').width,
+        width,
         transform: [
           {
             translateX: slideAnim.interpolate({
               inputRange: [0, 1],
-              outputRange: [Dimensions.get('window').width / 2, -Dimensions.get('window').width / 2],
+              outputRange: [width / 2, -width / 2],
             })
           }]
       }}
@@ -68,12 +66,12 @@ export const AnimatedQuestion = (props: AnimatedQuestionProps) => {
         }
       </Animated.View>
       <Animated.View style={{
-        width: Dimensions.get('window').width,
+        width,
         transform: [
           {
             translateX: slideAnim.interpolate({
               inputRange: [0, 1],
-              outputRange: [Dimensions.get('window').width / 2, -Dimensions.get('window').width / 2],
+              outputRange: [width / 2, -width / 2],
             })
           }]
       }}

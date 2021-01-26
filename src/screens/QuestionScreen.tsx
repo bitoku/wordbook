@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useRef, useState} from 'react';
 import {View} from 'react-native';
 import {Container, Text, Button} from 'native-base';
 import {StackNavigationProp} from "@react-navigation/stack";
@@ -17,6 +17,7 @@ type Props = {
 
 export default function QuestionScreen(props: Props) {
   const [questionIdx, setQuestionIdx] = useState(0);
+  const [questionWidth, setQuestionWidth] = useState(0);
 
   const vocabs: Vocabulary[] = [
     {
@@ -63,22 +64,33 @@ export default function QuestionScreen(props: Props) {
 
   return (
     <Container>
-      <View style={{flex: 1}}>
-        <AnimatedQuestion
-          vocabs={vocabs}
-          questionIdx={questionIdx}
-        />
-      </View>
-      <View style={{flex: 1}}>
-        <Button>
-          <Text onPress={
+      <View style={{
+        display: 'flex',
+        flexDirection: 'row',
+      }}>
+        <View
+          onLayout={e => {
+            setQuestionWidth(e.nativeEvent.layout.width);
+          }}
+          style={{flex: 1}}
+        >
+          <AnimatedQuestion
+            vocabs={vocabs}
+            questionIdx={questionIdx}
+            width={questionWidth}
+          />
+        </View>
+        <View>
+          <Button onPress={
             () => {
-              setQuestionIdx(prevState => prevState+1)
+              setQuestionIdx(prevState => prevState + 1)
             }
           }>
-            next
-          </Text>
-        </Button>
+            <Text>
+              next
+            </Text>
+          </Button>
+        </View>
       </View>
     </Container>
   );

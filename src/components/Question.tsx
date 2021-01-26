@@ -25,18 +25,24 @@ export const Question = (props: QuestionProps) => {
       </Text>
       {
         options.map((option, idx) => {
+          // this option's number
           const optionNum = idx + 1;
+          // whether this option is the correct option
           const correctOption = optionNum === correctAns;
+          // whether a user answered
           const isAnswered = !!userAns;
+          // whether a user selected this option.
+          const isSelected = userAns === optionNum;
+
           return (
             <Button
               block dark
               bordered={
-                !(correctOption && isAnswered) &&
-                !(!correctOption && userAns === optionNum)
+                !isSelected &&
+                !(correctOption && isAnswered)
               }
               success={correctOption && isAnswered}
-              danger={!correctOption && isAnswered && userAns === optionNum}
+              danger={!correctOption && isAnswered && isSelected}
               style={[styles.common]}
               onPress={() => {
                 setUserAns(optionNum)

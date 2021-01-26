@@ -2,7 +2,7 @@ import React, {useRef, useState} from 'react';
 import {Animated, Dimensions, StyleSheet, View} from 'react-native';
 import {Container, Text, Button, Body, Card, CardItem, Header, Title, Content} from 'native-base';
 import {StackNavigationProp} from "@react-navigation/stack";
-import {RootStackParamList} from "../../Props";
+import {RootStackParamList} from "../Props";
 
 type ProblemScreenNavigationProp = StackNavigationProp<
   RootStackParamList,
@@ -13,7 +13,10 @@ type Props = {
   navigation: ProblemScreenNavigationProp;
 };
 
-export default function ProblemScreen({ navigation }: Props) {
+export default function ProblemScreen(props: Props) {
+  const {
+    navigation,
+  } = props;
   const [userAns, setUserAns] = useState<number>(0);
   const slideAnim = useRef(new Animated.Value(0)).current;
 
@@ -92,29 +95,13 @@ export default function ProblemScreen({ navigation }: Props) {
             <Body>
               <Text style={[styles.common]}>
                 1 Cリンゴ; リンゴの木(apple tree) (!果肉ではU)
-              </Text>
-              <Text style={[styles.common]}>
                 ▸ bake [bite into] an apple
-              </Text>
-              <Text style={[styles.common]}>
                 リンゴを焼く[かじる]
-              </Text>
-              <Text style={[styles.common]}>
                 ▸ An apple a day keeps the doctor away.
-              </Text>
-              <Text style={[styles.common]}>
                 〘ことわざ〙 1日にリンゴ1つで医者いらず (!リンゴは健康に良いとされる) .
-              </Text>
-              <Text style={[styles.common]}>
                 2 Cリンゴに似た果実; リンゴに形が似たもの
-              </Text>
-              <Text style={[styles.common]}>
                 ▸ a crab apple
-              </Text>
-              <Text style={[styles.common]}>
                 野生リンゴ.
-              </Text>
-              <Text style={[styles.common]}>
                 3 〖A-〗アップル〘米国のIT企業〙; ＝ Macintosh.
               </Text>
             </Body>

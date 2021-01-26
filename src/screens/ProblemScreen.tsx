@@ -4,6 +4,7 @@ import {Container, Text, Button, Body, Card, CardItem, Header, Title, Content} f
 import {StackNavigationProp} from "@react-navigation/stack";
 import {RootStackParamList} from "../Props";
 import {styles} from "../style/style";
+import {Question} from "../components/Question";
 
 type ProblemScreenNavigationProp = StackNavigationProp<
   RootStackParamList,
@@ -18,7 +19,6 @@ export default function ProblemScreen(props: Props) {
   const {
     navigation,
   } = props;
-  const [userAns, setUserAns] = useState<number>(0);
   const slideAnim = useRef(new Animated.Value(0)).current;
 
   const slide = () => {
@@ -29,8 +29,6 @@ export default function ProblemScreen(props: Props) {
     }).start();
   }
 
-  const options = ['りんご', 'みかん', 'ぶどう', 'レモン'];
-  const correctAns = 1;
   return (
     <Container>
       <View style={styles.content}>
@@ -45,70 +43,7 @@ export default function ProblemScreen(props: Props) {
             }]
         }}
         >
-        <Text style={[styles.common, styles.word]}>
-          apple
-        </Text>
-        <Text style={[styles.common, styles.phonetic]}>
-          [ǽpl]
-        </Text>
-        {options.map((option, idx) => {
-          const optionNum = idx + 1;
-          const correctOption = optionNum === correctAns;
-          const isAnswered = !!userAns;
-          return (
-            <Button
-              block dark
-              bordered={
-                !(correctOption && isAnswered) &&
-                !(!correctOption && userAns === optionNum)
-              }
-              success={correctOption && isAnswered}
-              danger={!correctOption && isAnswered && userAns === optionNum}
-              style={[styles.common]}
-              onPress={() => {setUserAns(optionNum)}}
-              key={idx}
-            >
-              <Text>{option}</Text>
-            </Button>
-          );
-        })}
-        <Button
-          onPress={() => {
-            slide();
-          }}
-        >
-          <Text>
-            next
-          </Text>
-        </Button>
-        {!!userAns &&
-        <Card style={[styles.common]}>
-          <CardItem header>
-            <Text style={[styles.common]}>ap･ple</Text>
-            <Text style={[styles.common]}>| ǽp(ə)l |</Text>
-          </CardItem>
-          <CardItem>
-            <Text style={[styles.common]}>
-              名詞複～s | -z |
-            </Text>
-          </CardItem>
-          <CardItem>
-            <Body>
-              <Text style={[styles.common]}>
-                1 Cリンゴ; リンゴの木(apple tree) (!果肉ではU)
-                ▸ bake [bite into] an apple
-                リンゴを焼く[かじる]
-                ▸ An apple a day keeps the doctor away.
-                〘ことわざ〙 1日にリンゴ1つで医者いらず (!リンゴは健康に良いとされる) .
-                2 Cリンゴに似た果実; リンゴに形が似たもの
-                ▸ a crab apple
-                野生リンゴ.
-                3 〖A-〗アップル〘米国のIT企業〙; ＝ Macintosh.
-              </Text>
-            </Body>
-          </CardItem>
-        </Card>
-        }
+          <Question />
         </Animated.View>
         <Animated.View style={{
           width: Dimensions.get('window').width,
@@ -121,86 +56,7 @@ export default function ProblemScreen(props: Props) {
             }]
         }}
         >
-          <Text style={[styles.common, styles.word]}>
-            apple
-          </Text>
-          <Text style={[styles.common, styles.phonetic]}>
-            [ǽpl]
-          </Text>
-          {options.map((option, idx) => {
-            const optionNum = idx + 1;
-            const correctOption = optionNum === correctAns;
-            const isAnswered = !!userAns;
-            return (
-              <Button
-                block dark
-                bordered={
-                  !(correctOption && isAnswered) &&
-                  !(!correctOption && userAns === optionNum)
-                }
-                success={correctOption && isAnswered}
-                danger={!correctOption && isAnswered && userAns === optionNum}
-                style={[styles.common]}
-                onPress={() => {setUserAns(optionNum)}}
-                key={idx}
-              >
-                <Text>{option}</Text>
-              </Button>
-            );
-          })}
-          <Button
-            onPress={() => {
-              slide();
-            }}
-          >
-            <Text>
-              next
-            </Text>
-          </Button>
-          {!!userAns &&
-          <Card style={[styles.common]}>
-            <CardItem header>
-              <Text style={[styles.common]}>ap･ple</Text>
-              <Text style={[styles.common]}>| ǽp(ə)l |</Text>
-            </CardItem>
-            <CardItem>
-              <Text style={[styles.common]}>
-                名詞複～s | -z |
-              </Text>
-            </CardItem>
-            <CardItem>
-              <Body>
-                <Text style={[styles.common]}>
-                  1 Cリンゴ; リンゴの木(apple tree) (!果肉ではU)
-                </Text>
-                <Text style={[styles.common]}>
-                  ▸ bake [bite into] an apple
-                </Text>
-                <Text style={[styles.common]}>
-                  リンゴを焼く[かじる]
-                </Text>
-                <Text style={[styles.common]}>
-                  ▸ An apple a day keeps the doctor away.
-                </Text>
-                <Text style={[styles.common]}>
-                  〘ことわざ〙 1日にリンゴ1つで医者いらず (!リンゴは健康に良いとされる) .
-                </Text>
-                <Text style={[styles.common]}>
-                  2 Cリンゴに似た果実; リンゴに形が似たもの
-                </Text>
-                <Text style={[styles.common]}>
-                  ▸ a crab apple
-                </Text>
-                <Text style={[styles.common]}>
-                  野生リンゴ.
-                </Text>
-                <Text style={[styles.common]}>
-                  3 〖A-〗アップル〘米国のIT企業〙; ＝ Macintosh.
-                </Text>
-              </Body>
-            </CardItem>
-          </Card>
-          }
+          <Question />
         </Animated.View>
       </View>
     </Container>

@@ -2,7 +2,7 @@ import React, {useRef, useState} from 'react';
 import {Animated, Dimensions, StyleSheet, View} from 'react-native';
 import {Container, Text, Button, Body, Card, CardItem, Header, Title, Content} from 'native-base';
 import {StackNavigationProp} from "@react-navigation/stack";
-import {RootStackParamList} from "./Props";
+import {RootStackParamList} from "../../Props";
 
 type ProblemScreenNavigationProp = StackNavigationProp<
   RootStackParamList,

@@ -9,7 +9,7 @@ export const Question = () => {
   const correctAns = 1;
 
   return (
-    <View>
+    <View style={styles.question}>
       <Text style={[styles.common, styles.word]}>
         apple
       </Text>

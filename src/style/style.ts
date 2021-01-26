@@ -1,4 +1,4 @@
-import {StyleSheet} from "react-native";
+import {Dimensions, StyleSheet} from "react-native";
 
 export const styles = StyleSheet.create({
   content: {
@@ -7,6 +7,7 @@ export const styles = StyleSheet.create({
     flexDirection: 'row',
     flex: 1,
     justifyContent: 'center',
+    height: 400,
   },
   common: {
     margin: 5,
@@ -25,5 +26,8 @@ export const styles = StyleSheet.create({
   },
   header: {
     height: 30,
+  },
+  question: {
+    height: Dimensions.get('window').height * 0.5
   }
 });

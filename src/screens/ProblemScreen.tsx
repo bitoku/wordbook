@@ -59,6 +59,13 @@ export default function ProblemScreen(props: Props) {
           <Question />
         </Animated.View>
       </View>
+      <View style={{flex: 1}}>
+        <Button>
+          <Text onPress={() => {slide()}}>
+            next
+          </Text>
+        </Button>
+      </View>
     </Container>
   );
 }

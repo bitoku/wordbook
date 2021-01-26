@@ -1,4 +1,4 @@
-rootProject.name = 'wordholic'
+rootProject.name = 'wordbook'
 
 apply from: '../node_modules/react-native-unimodules/gradle.groovy'
 includeUnimodulesProjects()

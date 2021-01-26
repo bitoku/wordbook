@@ -1,4 +1,4 @@
-package com.wordholic;
+package com.wordbook;
 
 import android.os.Bundle;
 

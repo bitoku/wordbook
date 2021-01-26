@@ -132,7 +132,7 @@ android {
     }
 
     defaultConfig {
-        applicationId "com.wordholic"
+        applicationId "com.wordbook"
         minSdkVersion rootProject.ext.minSdkVersion
         targetSdkVersion rootProject.ext.targetSdkVersion
         versionCode 1

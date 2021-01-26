@@ -1,9 +1,9 @@
 {
-  "name": "wordholic",
-  "displayName": "wordholic",
+  "name": "wordbook",
+  "displayName": "wordbook",
   "expo": {
-    "name": "wordholic",
-    "slug": "wordholic",
+    "name": "wordbook",
+    "slug": "wordbook",
     "version": "1.0.0",
     "assetBundlePatterns": [
       "**/*"
